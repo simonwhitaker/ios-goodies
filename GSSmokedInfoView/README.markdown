@@ -5,7 +5,7 @@ fade-in/fade-out animations.
 
 ## Pre-requisites
 
-1. Add `QuartzCore framework` to your project
+1. Add QuartzCore.framework to your project
 2. Copy `GSSmokedInfoView.h` and `GSSmokedInfoView.m` into your project
 
 ## Typical usage
