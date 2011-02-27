@@ -24,4 +24,4 @@ fade-in/fade-out animations.
 
 ## Screenshot
 
-<img src="http://cl.ly/4t7y/GSSmokedInfoView_demo.png">
+<img src="GSSmokedInfoView_screenshot.png">
