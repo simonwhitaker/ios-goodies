@@ -67,17 +67,14 @@
     [self.layer addAnimation:opacityAnim forKey:@"fadeIn"];
     self.layer.opacity = 1.0;
     
-    // Add a little "bulge" animation
-    CAKeyframeAnimation *scaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    scaleAnimation.values = [NSArray arrayWithObjects:
-                             [NSNumber numberWithFloat:0.8],
-                             [NSNumber numberWithFloat:1.05],
-                             [NSNumber numberWithFloat:1.0],
-                             nil];
+    // Add a scale animation to grow the view as it appears
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:0.8];
+    scaleAnimation.toValue = [NSNumber numberWithFloat:1.0];
     
-    // I find having the "bulge" duration longer than the fade-in duration works well 
+    // I find having the "grow" duration longer than the opacity fade-in duration works well 
     scaleAnimation.duration = FADE_IN_DURATION * 2;
-    [self.layer addAnimation:scaleAnimation forKey:@"bulge"];
+    [self.layer addAnimation:scaleAnimation forKey:@"grow"];
     
     // Set the view to dismiss itself after specified timeout
     [NSTimer scheduledTimerWithTimeInterval:self.timeout
