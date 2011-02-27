@@ -1,18 +1,27 @@
-# Goo Software iOS Goodies
+# GSSmokedInfoView
 
-A collection of widgets and stuff for iOS, for you to use as you see fit.
+A simple "smoked glass" info view, complete with unobtrusive 
+fade-in/fade-out animations.
 
-## Licensing and attribution
+## Pre-requisites
 
-License details are in UNLICENSE. Basically, licensing is as liberal as
-we can make it. Help yourself. :)
+1. Add `QuartzCore framework` to your project
+2. Copy `GSSmokedInfoView.h` and `GSSmokedInfoView.m` into your project
 
-We know it's not always possible or desirable to attribute third-party 
-code in your app, but if you can add an attribution it'll help other 
-developers to find these goodies, and it'll give us a warm tingly feeling 
-inside. We'd suggest:
+## Typical usage
 
-    Uses <goody name> by Goo Software: http://github.com/simonwhitaker/ios-goodies 
+    #import "GSSmokedInfoView.h"
 
-Please also let us know that you're using the goodies so that we can 
-point other prospective users to your app as an in-the-wild demo.
+    @implementation MyViewController
+
+    -(IBAction)showSmokedInfoView:(id)sender {
+        NSString *message = @"Oh no! The internet is broken!";
+    	GSSmokedInfoView *infoView = [[[GSSmokedInfoView alloc] initWithMessage:message andTimeout:2.0] autorelease];
+        [infoView show];
+    }
+
+    @end
+
+## Screenshot
+
+<img src="http://cl.ly/4t7y/GSSmokedInfoView_demo.png">
