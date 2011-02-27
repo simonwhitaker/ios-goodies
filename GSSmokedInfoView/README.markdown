@@ -24,4 +24,4 @@ fade-in/fade-out animations.
 
 ## Screenshot
 
-![GSSmokedInfoView Screenshot](GSSmokedInfoView_screenshot.png)
+![GSSmokedInfoView Screenshot](GSSmokedInfoView_screenshot.png?raw=true)
