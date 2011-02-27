@@ -12,7 +12,7 @@
 #define CORNER_RADIUS 20.0
 #define BACKGROUND_OPACITY 0.7
 #define TEXT_PADDING 15.0
-#define FONT_SIZE 16.0
+#define FONT_SIZE 17.0
 #define FADE_IN_DURATION 0.1
 #define FADE_OUT_DURATION 0.25
 
@@ -39,7 +39,9 @@
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = UITextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:FONT_SIZE];
+        label.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
+        label.shadowColor = [UIColor blackColor];
+        label.shadowOffset = CGSizeMake(0, 2);
         label.text = message;
         
         // Add label to the view
