@@ -15,7 +15,7 @@ fade-in/fade-out animations.
     @implementation MyViewController
 
     -(IBAction)showSmokedInfoView:(id)sender {
-        NSString *message = @"Oh no! The internet is broken!";
+        NSString *message = @"Oh noes! Internets timed out!";
     	GSSmokedInfoView *infoView = [[[GSSmokedInfoView alloc] initWithMessage:message andTimeout:2.0] autorelease];
         [infoView show];
     }
