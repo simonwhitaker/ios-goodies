@@ -24,4 +24,4 @@ fade-in/fade-out animations.
 
 ## Screenshot
 
-![GSSmokedInfoView Screenshot](GSSmokedInfoView_screenshot.png?raw=true)
+![GSSmokedInfoView Screenshot](https://github.com/simonwhitaker/ios-goodies/raw/develop/GSSmokedInfoView/GSSmokedInfoView_screenshot.png)
