@@ -19,6 +19,10 @@
     [super dealloc];
 }
 
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    return YES;
+}
+
 -(IBAction)showSmokedInfoView:(id)sender {
     NSString *message = @"Oh no! The internet is broken!";
 	GSSmokedInfoView *infoView = [[[GSSmokedInfoView alloc] initWithMessage:message andTimeout:2.0] autorelease];

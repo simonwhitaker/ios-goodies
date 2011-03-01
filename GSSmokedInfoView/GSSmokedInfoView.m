@@ -6,6 +6,7 @@
 
 #import "GSSmokedInfoView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <math.h>
 
 #define VIEW_WIDTH 180.0
 #define VIEW_HEIGHT 180.0
@@ -58,6 +59,22 @@
     self.center = keyWindow.center;
     self.layer.opacity = 0.0;
     [keyWindow addSubview:self];
+
+    // Adjust the view's orientation
+    switch ([UIApplication sharedApplication].statusBarOrientation) {
+		case UIInterfaceOrientationLandscapeRight:
+            [self.layer setValue:[NSNumber numberWithFloat:M_PI_2 * 1] forKeyPath:@"transform.rotation"];
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            [self.layer setValue:[NSNumber numberWithFloat:M_PI_2 * 2] forKeyPath:@"transform.rotation"];
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            [self.layer setValue:[NSNumber numberWithFloat:M_PI_2 * 3] forKeyPath:@"transform.rotation"];
+            break;
+        default:
+            break;
+	}
+
     
     // Add a fade-in animation
     CABasicAnimation *opacityAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
