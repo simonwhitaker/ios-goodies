@@ -19,6 +19,7 @@
 
 @implementation GSSmokedInfoView
 @synthesize timeout = _timeout;
+@synthesize delegate = _delegate;
 
 -(id)initWithMessage:(NSString*)message andTimeout:(NSTimeInterval)timeout {
     CGRect frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
@@ -126,6 +127,9 @@
     // Only called after fading the view out when it's dismissed - once the
     // fadeout is complete, remove me from my superview. (View will dealloc
     // once it's removed from its superview provided nothing else retains it.)
+    if (self.delegate && [self.delegate respondsToSelector:@selector(smokedInfoViewDidDismiss:)]) {
+        [self.delegate smokedInfoViewDidDismiss:self];
+    }
     [self removeFromSuperview];
 }
 
