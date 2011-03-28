@@ -8,8 +8,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <math.h>
 
-#define VIEW_WIDTH 180.0
-#define VIEW_HEIGHT 180.0
+#define DEFAULT_VIEW_WIDTH 180.0
+#define DEFAULT_VIEW_HEIGHT 180.0
 #define CORNER_RADIUS 20.0
 #define BACKGROUND_OPACITY 0.7
 #define TEXT_PADDING 15.0
@@ -21,8 +21,9 @@
 @synthesize timeout = _timeout;
 @synthesize delegate = _delegate;
 
--(id)initWithMessage:(NSString*)message andTimeout:(NSTimeInterval)timeout {
-    CGRect frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
+
+-(id)initWithMessage:(NSString *)message viewSize:(CGSize)size andTimeout:(NSTimeInterval)timeout {
+    CGRect frame = CGRectMake(0, 0, size.width, size.height);
     self = [super initWithFrame:frame];
     if (self) {
         // Give the view a transparent background
@@ -32,8 +33,8 @@
         frame = CGRectMake(
                            TEXT_PADDING, 
                            TEXT_PADDING, 
-                           VIEW_WIDTH - TEXT_PADDING * 2, 
-                           VIEW_HEIGHT - TEXT_PADDING * 2);
+                           self.frame.size.width - TEXT_PADDING * 2, 
+                           self.frame.size.height - TEXT_PADDING * 2);
         UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
         
         // Configure the label
@@ -52,6 +53,12 @@
         self.timeout = timeout;
     }
     return self;
+}
+
+-(id)initWithMessage:(NSString*)message andTimeout:(NSTimeInterval)timeout {
+    return [self initWithMessage:message 
+                        viewSize:CGSizeMake(DEFAULT_VIEW_WIDTH, DEFAULT_VIEW_HEIGHT) 
+                      andTimeout:timeout];
 }
 
 -(void)show {
@@ -136,8 +143,16 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     CGContextRef c = UIGraphicsGetCurrentContext();
-    
-    
+    CGFloat view_width = self.frame.size.width;
+    CGFloat view_height = self.frame.size.height;
+
+    // Handle rotated views correctly
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        CGFloat temp = view_width;
+        view_width = view_height;
+        view_height = temp;
+    }
+
     /*
      * To draw a rectangle with rounded corners, I'll use 
      * CGContextAddArcToPoint() to draw from one side's
@@ -156,29 +171,29 @@
      */
 
     // Draw north-east corner: N to E via NE
-    CGContextMoveToPoint(c, VIEW_WIDTH/2, 0);
+    CGContextMoveToPoint(c, view_width/2, 0);
     CGContextAddArcToPoint(c, 
-                           VIEW_WIDTH, 0, 			  	// NE
-                           VIEW_WIDTH, VIEW_HEIGHT/2, 	// E
+                           view_width, 0, 			  	// NE
+                           view_width, view_height/2, 	// E
                            CORNER_RADIUS);
 
     // Draw south-east corner: E to S via SE
     CGContextAddArcToPoint(c, 
-                           VIEW_WIDTH, VIEW_HEIGHT, 	// SE
-                           VIEW_WIDTH/2, VIEW_HEIGHT, 	// S
+                           view_width, view_height, 	// SE
+                           view_width/2, view_height, 	// S
                            CORNER_RADIUS);
     
     // Draw south-west corner: S to W via SW
     CGContextAddArcToPoint(c, 
-                           0, VIEW_HEIGHT, 				// SW
-                           0, VIEW_HEIGHT/2, 			// W
+                           0, view_height, 				// SW
+                           0, view_height/2, 			// W
                            CORNER_RADIUS);
     
     // Finish with the "Hitchcock manoeuvre": North by Northwest
     // Bboom, tish. I am available for weddings.
     CGContextAddArcToPoint(c, 
                            0, 0, 						// NW
-                           VIEW_WIDTH/2, 0, 			// N
+                           view_width/2, 0, 			// N
                            CORNER_RADIUS);
 
     CGContextClosePath(c);

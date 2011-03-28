@@ -17,6 +17,7 @@
 @property (nonatomic) NSTimeInterval timeout;
 
 -(id)initWithMessage:(NSString*)message andTimeout:(NSTimeInterval)timeout;
+-(id)initWithMessage:(NSString*)message viewSize:(CGSize)size andTimeout:(NSTimeInterval)timeout;
 -(void)show;
 
 @end
