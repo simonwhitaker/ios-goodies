@@ -8,10 +8,7 @@
 
 @protocol GSSmokedInfoViewDelegate;
 
-@interface GSSmokedInfoView : UIView {
-	NSTimeInterval _timeout;
-    id<GSSmokedInfoViewDelegate> _delegate;
-}
+@interface GSSmokedInfoView : UIView 
 
 @property (nonatomic, assign) id<GSSmokedInfoViewDelegate> delegate;
 @property (nonatomic) NSTimeInterval timeout;

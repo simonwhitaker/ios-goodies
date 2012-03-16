@@ -35,7 +35,7 @@
                            TEXT_PADDING, 
                            self.frame.size.width - TEXT_PADDING * 2, 
                            self.frame.size.height - TEXT_PADDING * 2);
-        UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
+        UILabel *label = [[UILabel alloc] initWithFrame:frame];
         
         // Configure the label
         label.numberOfLines = 5;
@@ -202,10 +202,5 @@
     CGContextSetRGBFillColor (c, 0, 0, 0, BACKGROUND_OPACITY);
     CGContextFillPath(c);
 }
-
-- (void)dealloc {
-    [super dealloc];
-}
-
 
 @end
